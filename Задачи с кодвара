@@ -1,0 +1,784 @@
+//вывести стринг n-ое количесво раз(инт в аргументах) и присвоить стрингу номер по порядку
+ public static String countingSheep(int num) {
+
+        String s = "";
+        for (int i = 1; i <= num; i++) {
+           s = s.concat(i + " sheep...");
+
+        }
+
+        return s;
+    }
+OR
+public static String countingSheep(int num) {
+
+        StringBuilder s = new StringBuilder();
+        for (int i = 1; i <= num; i++) {
+           s.append(i).append(" sheep...");
+
+        }
+
+        return s.toString();
+    }	
+	
+//Найти элемент перед искомым элементом, в массиве, начиная с конца
+ public static String warnTheSheep(String[] array) {
+
+            Collections.reverse(Arrays.asList(array));
+            int numWolf = Arrays.asList(array).indexOf("wolf");
+
+            return numWolf == 0 ? "Pls go away and stop eating my sheep" : "Oi! Sheep number "+ (numWolf) + "! You are about to be eaten by a wolf!";
+
+    }
+	
+//Развернуть массив и найти сумму разниц между ближайшими элементами
+public static int sumOfDifferences(int[] arr) {
+        Arrays.sort(arr);
+        int sumDiff = 0;
+        for (int i = arr.length-1; i>0; i--){
+            sumDiff = sumDiff + arr[i] - arr[i-1];
+        }
+        return sumDiff;
+    }
+	
+//Сравнить первую и последнюю букву в двух словах
+public static boolean feast(String beast, String dish) {
+    return beast.charAt(0)==dish.charAt(0) && beast.charAt(beast.length()-1) == dish.charAt(dish.length()-1);
+  }	
+  
+//Вывод таблицы умножения (1 * 2 = 2)
+public static String multiTable(int num) {
+
+//        StringBuilder result = new StringBuilder();
+//
+//        for (int i = 1; i <= 10; i++){
+//            result.append(new StringBuilder(String.format("%d * %d = %d\n", i, num, i * num)));
+//        }
+//
+//        return result.toString();
+        String result = "";
+
+        for (int i = 1; i < 11; i++){
+            if(i < 10) {
+                result += String.format("%d * %d = %d\n", i, num, i * num);
+            } else result += String.format("%d * %d = %d", i, num, i * num);
+
+        }
+        return result;
+    }	
+	
+//Вывести массив интов
+public static void main(String[] args) {
+        System.out.println(Arrays.toString(multipleOfIndex(new int[]{22, -6, 32, 82, 9, 25})));	
+		
+//Возвращает элементы массива кратные индексу элемента
+public static int[] multipleOfIndex(int[] array) {
+
+        ArrayList<Integer> result = new ArrayList<>(array.length);
+
+        for (int i = 1; i <= array.length - 1; i++) {
+            if (array[i] % i == 0) {
+                result.add(array[i]);
+            }
+        }
+        return result.stream().mapToInt(i -> i).toArray();
+    }
+	
+//Сумма двух массивов
+   int result = 0;
+
+        for (int i = 0; i  < arr1.length; i++){
+            
+                result += arr1[i] + arr2[i];
+        }
+     return result;
+	 
+//Сортировка массива по алфавиту, с игнорированием кейса
+ public static List<String> sort(List<String> textbooks) {
+
+        Collections.sort(textbooks, String.CASE_INSENSITIVE_ORDER);
+        
+        return textbooks;
+		
+//Возвращает наибольшее число (из заданных трёх целых чисел), полученное после вставки следующих операторов и скобок: +,*, () 
+    public static int expressionsMatter(int a, int b, int c) {
+
+        List<Integer> list = new ArrayList<>();
+
+        list.add(a * (b + c));
+        list.add(a * b * c);
+        list.add(a + b * c);
+        list.add((a + b) * c);
+        list.add(a + b + c);
+
+        list.sort(Comparator.naturalOrder());
+        list.sort(Comparator.reverseOrder());
+        
+      return Collections.max(list);
+      
+    }
+	System.out.println(expressionsMatter(1, 3, 1))
+} 	
+
+//Прямая и обратная сортировка массива интов
+public static int[] flip(char dir, int[] arr) {
+
+
+        List<Integer> list  = Arrays.stream(arr).boxed().collect(Collectors.toList() );
+
+        if (dir == 'R') list.sort(Comparator.comparingInt(o -> o));
+        if (dir == 'L') Collections.sort(list, Collections.reverseOrder());
+
+        return list.stream().mapToInt(Integer::intValue).toArray();
+    }
+либо
+public static int[] flip(char dir, int[] arr) {
+
+        List<Integer> list  = Arrays.stream(arr).boxed().collect(Collectors.toList() );
+
+        list.sort(dir == 'L' ? (a, b) -> b - a : (a, b) -> a - b);
+
+        return list.stream().mapToInt(Integer::intValue).toArray();
+
+    }
+либо
+public static int[] flip(char dir, int[] arr) {
+
+        List<Integer> list  = Arrays.stream(arr).boxed().collect(Collectors.toList() );
+
+        if (dir == 'R') list.sort((o1, o2) -> o1 - o2);
+        if (dir == 'L') list.sort((o1, o2) -> o2 - o1);
+
+        return list.stream().mapToInt(Integer::intValue).toArray();
+
+    }
+	
+//Возвращает массив целых чисел от n до 1, где n>0	
+public static int[] reverse(int n){
+        int[] ints = new int[n];
+
+        for (int i = n-1; i >=0; i--) {
+            ints[i] += ints.length-i;
+        }
+
+        return ints;
+		
+    }
+	
+//Возвращает число в двоичном формате	
+public static int toBinary(int n) {
+
+        String temp = Integer.toString(n, 2);
+
+        int result = Integer.parseInt(temp);
+
+        return result;
+    }
+	
+//Возвращает название дня недели, в зависимости от входящего параметра(инт)
+public static String getDay(int n) {
+        public static String getDay(int n) {
+        
+        return switch (n){
+            case 1 -> "Sunday";
+            case 2 -> "Monday";
+            case 3 -> "Tuesday";
+            case 4 -> "Wednesday";
+            case 5 -> "Thursday";
+            case 6 -> "Friday";
+            case 7 -> "Saturday";
+
+            default -> "Wrong, please enter a number between 1 and 7";
+        };
+        
+    }
+	
+//Возвращает интеграл переданного выражения	
+public static String integrate(int coefficient, int exponent) {
+        return String.format("%dx^%d", (coefficient/(exponent+1)), exponent+1);
+    }
+	
+//Замена в строке одного символа другим
+(String replace(char oldChar, char newChar) — заменяет все вхождения символа первого аргумента oldChar вторым — newChar)
+public static String replaceDots(final String str) {
+        return str.replace(".", "-");
+    }
+
+//Являются ли три входящих числа Пифагорской тройкой
+public class PythagoreanTriple {
+		public int pythagoreanTriple(int[] triple){
+        return triple[0] * triple[0] + triple[1] * triple[1] == triple[2] * triple[2] ? 1 : 0;
+    }
+}
+
+//Вывести количество нечётные/чётных символов до n числа
+public static int oddCount(int n) {
+return n/2;
+}
+
+//Верните N-е четное число
+ public static int nthEven(int n) {
+        int[] ints = new int[n];
+
+        for (int i = n-1; i >= 0; i--){
+            ints[i] = i*2;
+        }
+
+        return ints[ints.length-1];
+    }
+либо
+return n*2-2;
+
+//Вернуть первое непоследовательное число
+ static Integer find(final int[] array) {
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] - array[i - 1] != 1)
+                return array[i];
+        }
+        return null;
+    }
+
+//Возвращает ближайшее квадратное число
+ public static int nearestSq(final int n){
+        return (int) Math.pow(Math.round(Math.sqrt(n)),2);
+    }
+
+//Возвращает номер запрашиваемой буквы англ алфавита
+public static String position(char alphabet)
+    {
+        String s = "abcdefghijklmnopqrstuvwxyz";
+        return String.format("Position of alphabet: %d", s.indexOf(alphabet)+1);
+    }
+//Проверяет, является ли строка палиндромом 	
+    public static boolean isPalindrome(String text) {
+        String s = text.replaceAll("[^a-zA-Z0-9]", "");
+        StringBuilder builder = new StringBuilder(s);
+        String builder1 = String.valueOf(builder.reverse());
+        return s.equalsIgnoreCase(String.valueOf(builder1));
+    }
+//Метод, сливающий два отсортированных по неубыванию массива чисел в один отсортированный в том же порядке массив	
+public static int[] mergeArrays(int[] a1, int[] a2) {
+
+        return IntStream.concat(Arrays.stream(a1), Arrays.stream(a2)).sorted().toArray();
+    }
+	
+//Реализуйте метод, вычисляющий факториал заданного натурального числа.
+BigInteger result = BigInteger.ONE;
+    for (int i = 2; i <= n; i++)
+        result = result.multiply(BigInteger.valueOf(i));
+    return result;	
+	
+//На игровом поле находится робот. Позиция робота на поле описывается двумя целочисленным координатами: X и Y. 
+Ось X смотрит слева направо, ось Y — снизу вверх.
+В начальный момент робот находится в некоторой позиции на поле. 
+Также известно, куда робот смотрит: вверх, вниз, направо или налево. 
+Ваша задача — привести робота в заданную точку игрового поля.
+public static void moveRobot(Robot robot, int toX, int toY) {
+   while (robot.getDirection() != Direction.RIGHT) robot.turnRight(); 
+    while (robot.getX() < toX) robot.stepForward();
+    robot.turnRight();
+    while (robot.getY() > toY) robot.stepForward();
+    robot.turnRight();
+    while (robot.getX() > toX) robot.stepForward();
+    robot.turnRight();
+    while (robot.getY() < toY) robot.stepForward();
+}
+
+//Метод находит бицентр треугольника
+public static double[] barTriang(double[] x, double[] y, double[] z) {
+            double x1 = x[0];
+            double x2 = y[0];
+            double x3 = z[0];
+
+            double y1 = x[1];
+            double y2 = y[1];
+            double y3 = z[1];
+
+            double[] point = new double[2];
+            point[0] = (double)Math.round((x1 + x2 + x3)/3.0 * 10000d) / 10000d;
+            point[1] = (double)Math.round((y1 + y2 + y3)/3.0 * 10000d) / 10000d;
+
+
+            return point;
+        }
+
+//Метод заменяет все гласные буквы на !
+public static String replace(final String s) {
+        return s.replaceAll("[aeiouAEIOU]", "!");
+    }
+
+//	Метод удаляет n-количество восклицательныч знаков в предложении слева направо. 
+public static String remove(String s, int n){
+        for (int i = 0; i<n; i++){
+            s = s.replaceFirst("!", "");
+        }
+        return s;
+    }
+	
+//Метод удваивает значение элемента цикла
+public static int[] map(int[] arr) {
+
+        for (int i = 0; i < arr.length; i++){
+            arr[i]=arr[i]*2;
+        }
+
+        return arr;
+    }
+
+//Метод для обработки массива интов. Если число имеет целый квадратный корень -> извлечь из этого числа квадратный корень, в противном случае возвести число в квадрат.
+public static int[] squareOrSquareRoot(int[] array)
+    {
+        for (int i =0; i< array.length; i++){
+            if(Math.sqrt(array[i]) == Math.ceil(Math.sqrt(array[i]))) {
+                array[i] = (int) Math.sqrt(array[i]);
+            } else array[i] = array[i] * array[i];
+        }
+        return array;
+    }
+	
+//Есть список из 6 стрингов, каждая строка соответсвует порядковому номеру от 1 до 6 вкл. Вернуть стринг в соответствии с нумерацией, если инт больше 6, то начать сначала
+public static String howMuchILoveYou(int nb_petals) {
+    
+      String[] arr ={"not at all", "I love you",  "a little", "a lot", "passionately", "madly"};
+    
+      return arr[nb_petals%6];
+    }
+
+//Нужно проверить предоставленный массив (x) на наличие хороших идей "хорошо" и плохих идей "плохо". 
+Если есть одна или две хорошие идеи, верните "Опубликовать!", если их больше 2, верните "Я чувствую серию!". 
+Если хороших идей нет, как это часто бывает, верните "Сбой!".	
+public static String well(String[] x) {
+        int count = 0;
+        for (int i = 0; i < x.length; i++){
+            if(x[i].equals("good")) count++;
+        }
+        if (count == 0) return "Fail";
+        if (count == 1 || count == 2) return "Publish!";
+        if (count > 2) return "I smell a series!";
+
+        return null;
+    }
+	
+//Учитывая массив целых чисел в виде строк и чисел, верните сумму значений массива, как если бы все были числами. System.out.println(sum(Arrays.asList("5", 5)));
+public static int sum(List<?> mixed) {
+        
+        return mixed.stream().mapToInt(value -> Integer.parseInt("" + value)).sum();
+		// Берём Лист объектов и превращаем его в поток -> из этого потока строим объектов интов, 
+		по средствам превращения каждого значения потока(value) в инт(с помощью парсИнт) -> потом считаем сумму
+    }
+
+//Учитывая строку цифр, вы должны заменить любую цифру ниже 5 на "0", а любую цифру 5 и выше на "1". Возвращает результирующую строку.
+public static String fakeBin(String numberString) {
+
+        char[] chars = numberString.toCharArray();
+
+        for (int i = 0; i < numberString.length(); i++){
+
+            if (chars[i] == '0' || chars[i] == '1' || chars[i] == '2' || chars[i] == '3' || chars[i] == '4') {
+               chars[i] = '0';
+            } else chars[i] = '1';
+        }
+
+        return String.valueOf(chars);
+    }
+или
+return numberString.replaceAll("[0-4]", "0").replaceAll("[5-9]", "1");	
+
+или математическое сравнение чаров!
+ final char c[] = numberString.toCharArray();
+        for (int i = 0; i < c.length; i++)
+          c[i] = c[i] < '5' ? '0' : '1';
+        return new String(c);
+
+// удалите пробелы из строки, а затем верните результирующую строку
+public static String noSpace(final String x) {
+        return x.replace(" ", "");
+    }
+	
+//Из Фамилии И Имени сделать инициалы, вида - А.К
+public static String abbrevName(String name) {
+        String[] strings = name.split(" ");
+        String result = "";
+        for (String s: strings){
+            result = result + s.substring(0, 1).concat(".");
+        }
+        return result.toUpperCase().substring(0, 3);
+    }
+
+//Метод для разделения строки и преобразования ее в массив слов	
+public static String[] stringToArray(String s) {
+        return s.split(" ");
+    }
+	
+!!!Пробел автоматически заменяется на ,!!!
+
+//Вы должны найти N-ю степень элемента в массиве с индексом N. 
+Если N находится за пределами массива, то верните значение -1. Не забывайте, что первый элемент имеет индекс 0.
+
+массив = [1, 2, 3, 4] и N = 2, тогда результат будет 3^ 2 == 9;
+массив = [1, 2, 3] и N = 3, но N находится за пределами массива, поэтому результат равен -1.	
+
+public static int nthPower(int[] array, int n) {
+    return n >= array.length ? -1 : (int) Math.pow(array[n], n);
+  }
+  
+//Массив строк отсортировать с учётом региста, получить первое слово, вернуть строку, с ***, располагающимися между её каждой бувой
+ public static String twoSort(String[] s) {
+        String result = "";
+
+        Arrays.sort(s, String::compareTo);
+        String first = s[0];
+        char[] second = first.toCharArray();
+
+        for (int i = 0; i < second.length; i++){
+            result = result + second[i] + "***";
+        }
+
+        return result.substring(0, result.length()-3);
+    }
+или
+
+public static String twoSort(String[] s) {
+    return String.join("***", Arrays.stream(s).sorted().findFirst().orElse("").split(""));
+  }	
+
+//Массив строк отсортировать, в каждом слове взять первую букву и соеденить их ***
+public static String twoSort(String[] s) {
+        String result = "";
+
+        Arrays.stream(s).sorted().toArray();
+
+        for (int i = 0; i < s.length; i++){
+            result = result + s[i].charAt(0) + "***";
+        }
+
+        return result.substring(0, result.length()-3);
+    }
+
+//Проверить массив объектов на наличие заданного объекта
+public static boolean check(Object[] a, Object x) {
+        for (int i = 0; i < a.length; i++)
+            if (a[i].equals(x)) {
+                return true;
+            } return false;
+    }
+	
+или
+
+public static boolean check(Object[] a, Object x) {
+        return Arrays.asList(a).contains(x);
+    }
+	
+//Найти среднее значение массива
+public static double find_average(int[] array){
+        int sum = 0;
+
+        for (int i = 0; i < array.length; i++){
+            sum = sum + array[i];
+        }
+
+        return (double) sum/array.length;
+    }
+или
+public static double find_average(int[] array){
+    return Arrays.stream(array).average().orElse(0);
+  }
+
+//Повторить строку n-ое количество раз
+public static String repeatStr(int repeat, final String string) {
+        String result = "";
+
+        while (repeat > 0){
+            result = result.concat(string);
+            repeat--;
+        }
+
+        return result;
+    }
+или
+public static String repeatStr(final int repeat, final String string) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < repeat; i++) {
+            sb.append(string);
+        }
+
+        return sb.toString();
+    }
+или
+public static String repeatStr(int repeat, final String string) {
+        return string.repeat(repeat);
+    }
+или
+public static String repeatStr(int repeat, final String string) {
+       return Stream.generate(()->string).limit(repeat).collect(Collectors.joining());
+    }
+Stream.generate(()->string) — генерирует безконечный поток из предоставленного Supplier(поставщика) -> 
+limit(repeat) — устанавливает лимит объектов в потоке -> 
+collect() — метод для сборки всех копий -> 
+Collectors.joining() — я не очень поняла	
+
+//Если в строке есть некоторые символы, то заменить их на нужные
+public static String correct(String string) {
+    return string.replace("5","S").replace("0", "O").replace("1","I");
+  }
+  
+//Задан массив целых чисел.
+Возвращает массив, где первый элемент - это количество положительных чисел, а второй элемент - сумма отрицательных чисел. 
+0 не является ни положительным, ни отрицательным.
+Если входные данные представляют собой пустой массив или имеют значение null, верните пустой массив.
+public static int[] countPositivesSumNegatives(int[] input)
+    {
+       if (input == null || input.length == 0) return new int[] {};
+       int count = 0,sum = 0;
+       for (int i : input) {
+         if (i > 0) count ++;
+         if (i < 0) sum += i;
+       }
+       return new int[] {count,sum};
+    }
+	
+или
+
+public static int[] countPositivesSumNegatives(int[] input) {
+    return input == null || input.length == 0 ? 
+      new int[0] : 
+      new int[] { (int)IntStream.of(input).filter(i->i>0).count(), IntStream.of(input).filter(i->i<0).sum() };
+  }	
+
+//Суммируйте все числа данного массива, кроме самого высокого и самого низкого элемента (по значению, а не по индексу!).
+Самый высокий или самый низкий элемент соответственно - это один элемент на каждом ребре, даже если их несколько с одинаковым значением.
+Если вместо массива задано пустое значение ( null, None, и Nothingт.д.), Или данный массив представляет собой пустой список или список с единственным 1элементом, return .0
+public static int sum(int[] numbers)
+  {
+    int result = 0;
+
+        if (numbers == null || numbers.length == 0 || numbers.length == 1) {
+            result = 0;
+        } else {
+
+            Arrays.sort(numbers);
+
+            for (int i = 1; i < numbers.length - 1; i++) {
+                result = result + numbers[i];
+            }
+        }
+        return result;
+  }
+  
+//Просумировать все числа массива, кроме минимальных и максимальных значений
+        int result = 0;
+
+        if (numbers == null || numbers.length == 0 || numbers.length == 1) {
+            result = 0;
+        } else {
+            for (int i = 0; i < numbers.length; i++) {
+
+                if (numbers[i] != Arrays.stream(numbers).max().getAsInt() & numbers[i] != Arrays.stream(numbers).min().getAsInt()) {
+                    result = result + numbers[i];
+                }
+            }
+        }
+
+        return result;
+		
+//Метод принимает неотрицательное целое n число в качестве входных данных и возвращает список всех степеней 2 с показателем степени от 0до n(включительно)
+public static long[] powersOfTwo(int n){
+
+        long[] longs = new long[n+1];
+
+        for (int i = 0; i < n+1; i++){
+            longs[i] = (long) Math.pow(2, i);
+        }
+        return longs;
+    }
+
+//Метод, преобразует ДВОИЧНОЕ число (заданное в виде строки) в десятичное число. Т.е, если у нас число с основанием ДВА, которое нужно преобразовать в число с основанием 10, то в параместрах метода мы ставим цифру ДВА
+public static int binToDecimal(String inp){
+        return Integer.parseInt(inp, 2);
+    }
+где 2 - основание, в котором нужно представить запарсенное число из строки	
+
+//Метод, преобразует шестнадцатеричное число (заданное в виде строки) в десятичное число	
+public static int hexToDec(final String hexString) {
+
+        return Integer.parseInt(hexString, 16);
+    }
+	
+//Метод объеденят два массива, сортирует и удаляет дубликаты 
+public static int[] mergeArrays(int[] first, int[] second) {
+        return IntStream.concat(Arrays.stream(first), Arrays.stream(second)).sorted().distinct().toArray();
+    }
+
+//Суммировать все положительные элементы массива
+public static int sum(int[] arr){
+        int result = 0;
+        if (arr == null || arr.length == 0) {
+            result = 0;
+        } else {
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] > 0) {
+                    result = result + arr[i];
+                }
+            }
+        }
+        return result;
+    }
+
+или
+
+public static int sum(int[] arr){
+        return Arrays.stream(arr).filter(v -> v > 0).sum();
+    }	
+
+//Учитывая строку s, напишите метод (функцию), который вернет true, если это допустимое целое число или число с плавающей запятой, или false, если это не так.
+public static boolean isDigit(String s) {
+        return s.matches("^-[0-9]*\\.[0-9]+$");
+    }
+
+//Метод для удаления всех 0 с конца числа. Если 0 - единственная цифра - оставить.
+public static int noBoringZeros(int n) {
+        int result = 0;
+
+        if (n != 0) {
+            String temp = String.valueOf(n).replaceAll("0*$", "");
+            result = Integer.parseInt(temp);
+        } else result = 0;
+
+        return result;
+    }
+
+или
+
+public static int noBoringZeros(int n) {
+        if (n == 0) return 0;
+        if (n % 10 != 0) return n;
+        else return noBoringZeros (n / 10);
+    }
+
+//Метод заменяет все гласные в слове (у - не считаем гласной в том случае)
+ public static String disemvowel(String str) {
+
+        return str.replaceAll("[aeiouAEIOU]", "");
+    }
+
+//Посчитать счёт команды, который приходит в виде массива строк ["3:1", "2:0" ...]	
+public static int points(String[] games) {
+        int sum = 0;
+        
+        for (String s : games) {
+          char x = s.charAt(0),
+               y = s.charAt(2);
+          
+          sum += x > y ? 3 : x == y ? 1 : 0;
+        }
+        
+        return sum;
+    }
+	
+или
+public static int points(String[] games) {
+        int result = 0;
+
+        for (int i = 0; i < games.length; i++) {
+            String temp = games[i];
+
+            int first = Integer.parseInt(temp.substring(0, 1));
+            int second = Integer.parseInt(String.valueOf(temp.charAt(2)));
+
+            result = first > second ? result + 3 : first < second ? result : result +1;
+
+        }
+
+        return result;
+
+    }
+
+//Найдите сумму всех кратных n ниже m, если n/m = 0, то выброси исключение IllegalArgumentException()
+public static long sumMul(int n, int m) {
+        long result = 0;
+        if (n > 0 & m > 0) {
+            for (int i = n; i < m; i += n) {
+                result += i;
+            }
+        } else throw new IllegalArgumentException();
+
+        return result;
+    }
+
+//Поменять знак на противоположный
+public static int opposite(int number) {
+
+        return number * -1;
+    }
+
+//	Завершите функцию square sum так, чтобы она возводила в квадрат каждое переданное в нее число, а затем суммировала результаты вместе.
+Например, для [1, 2, 2] он должен возвращать 9
+
+   public static int squareSum(int[] n)
+    {
+        int sum = 0;
+
+        for (int i = 0; i < n.length; i++) {
+            sum = sum + n[i] * n[i];
+        }
+        return sum;
+    }
+	
+// Найдите наименьшее целое число в массиве
+public static int findSmallestInt(int[] args) {
+        return Arrays.stream(args).min().getAsInt();
+    }
+
+//Сосчитать сумму чисел от 1 до инт, приходящего  в параметрах метода
+public static int summation(int n) {
+        
+        int sum = 0;
+
+        for (int i = 1; i <= n ; i++) {
+
+            sum += i;
+            
+        }
+
+        return sum;
+    }
+	
+//Рассмотрим массив / список овец, в котором некоторые овцы могут отсутствовать на своем месте. Нам нужна функция, которая подсчитывает количество овец, присутствующих в массиве (true означает "присутствует").
+Подсказка: Не забудьте проверить наличие неверных значений, таких как null /undefined
+public static int countSheeps(Boolean[] arrayOfSheeps) {
+
+        return Integer.parseInt(String.valueOf(Arrays.stream(arrayOfSheeps).filter(Objects::nonNull).filter(boo -> boo).count()));
+    }
+
+//Преобразовать число в обратный массив цифр
+Учитывая случайное неотрицательное число, вы должны вернуть цифры этого числа в массиве в обратном порядке.
+    public static int[] digitize(long n) {
+
+        StringBuilder builder = new StringBuilder(String.valueOf(n));
+
+        String s = builder.reverse().toString();
+
+        int[] digitArr = new int[s.length()];
+
+        for (int i = 0; i < digitArr.length; i++) {
+            digitArr[i] = Integer.parseInt(String.valueOf(s.charAt(i)));
+        }
+
+        return digitArr;
+    }
+or
+
+  public static int[] digitize(long n) {
+        return new StringBuilder().append(n)
+                                  .reverse()
+                                  .chars()
+                                  .map(Character::getNumericValue)
+                                  .toArray();
+  }
+
+  
+	
+
+	
+	
